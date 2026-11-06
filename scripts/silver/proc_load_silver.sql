@@ -256,29 +256,8 @@ BEGIN
             ELSE NULL
         END AS sls_order_dt,
 
-        -- Convert YYYYMMDD shipping date to DATE
-        CASE
-            WHEN TRIM(sls_ship_dt::text)
-                 ~ '^[0-9]{8}$'
-                 AND sls_ship_dt::text <> '00000000'
-            THEN TO_DATE(
-                sls_ship_dt::text,
-                'YYYYMMDD'
-            )
-            ELSE NULL
-        END AS sls_ship_dt,
-
-        -- Convert YYYYMMDD due date to DATE
-        CASE
-            WHEN TRIM(sls_due_dt::text)
-                 ~ '^[0-9]{8}$'
-                 AND sls_due_dt::text <> '00000000'
-            THEN TO_DATE(
-                sls_due_dt::text,
-                'YYYYMMDD'
-            )
-            ELSE NULL
-        END AS sls_due_dt,
+        sls_ship_dt,
+		sls_due_dt,
 
         -- Correct inconsistent sales amounts
         CASE
